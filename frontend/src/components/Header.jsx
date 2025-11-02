@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Download, Flame, Menu, X } from 'lucide-react';
+import { Moon, Sun, Download, Flame, Menu, X, Wallet } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { Button } from './ui/button';
 import { mockStreak, motivationalQuotes } from '../mock';
@@ -28,8 +28,8 @@ const Header = ({ onExportCSV }) => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white font-bold text-xl shadow-lg">
-              ₨
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white shadow-lg">
+              <Wallet className="w-6 h-6" />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
               LekhaJokha
