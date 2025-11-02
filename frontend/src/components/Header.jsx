@@ -57,33 +57,60 @@ const Header = ({ onExportCSV }) => {
           {/* Actions */}
           <div className="flex items-center space-x-2">
             {/* Streak Badge */}
-            <div className="hidden sm:flex items-center space-x-1 px-3 py-1.5 bg-orange-50 dark:bg-orange-900/20 rounded-lg border border-orange-200 dark:border-orange-800">
-              <Flame className="w-4 h-4 text-orange-500" />
-              <span className="text-sm font-semibold text-orange-600 dark:text-orange-400">
-                {mockStreak.current} days
-              </span>
-            </div>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="hidden sm:flex items-center space-x-1 px-3 py-1.5 bg-orange-50 dark:bg-orange-900/20 rounded-lg border border-orange-200 dark:border-orange-800 cursor-help">
+                    <Flame className="w-4 h-4 text-orange-500" />
+                    <span className="text-sm font-semibold text-orange-600 dark:text-orange-400">
+                      {mockStreak.current} days
+                    </span>
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="font-semibold">Expense Tracking Streak! 🔥</p>
+                  <p className="text-xs">You've tracked expenses for {mockStreak.current} consecutive days</p>
+                  <p className="text-xs text-gray-500">Longest: {mockStreak.longest} days</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
 
             {/* CSV Export */}
-            <Button
-              onClick={onExportCSV}
-              variant="ghost"
-              size="icon"
-              className="hidden sm:inline-flex"
-              title="Export CSV"
-            >
-              <Download className="w-5 h-5" />
-            </Button>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    onClick={onExportCSV}
+                    variant="ghost"
+                    size="icon"
+                    className="hidden sm:inline-flex"
+                  >
+                    <Download className="w-5 h-5" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Export expenses to CSV</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
 
             {/* Dark Mode Toggle */}
-            <Button
-              onClick={toggleDarkMode}
-              variant="ghost"
-              size="icon"
-              title="Toggle theme"
-            >
-              {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </Button>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    onClick={toggleDarkMode}
+                    variant="ghost"
+                    size="icon"
+                  >
+                    {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Toggle {darkMode ? 'light' : 'dark'} mode</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
 
             {/* Mobile Menu Toggle */}
             <Button
