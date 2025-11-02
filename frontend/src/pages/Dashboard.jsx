@@ -415,6 +415,39 @@ const Dashboard = () => {
         onClose={() => setIconPickerOpen(false)}
         onSelectIcon={(icon) => setCustomCategory({ ...customCategory, icon })}
       />
+
+      {/* Edit Budget Dialog */}
+      <Dialog open={editBudgetOpen} onOpenChange={setEditBudgetOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Edit Monthly Budget</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div>
+              <Label htmlFor="budget">Monthly Budget (₨)</Label>
+              <Input
+                id="budget"
+                type="number"
+                placeholder="15000"
+                value={newBudget}
+                onChange={(e) => setNewBudget(e.target.value)}
+                className="text-lg"
+              />
+              <p className="text-xs text-gray-500 mt-2">
+                Set your monthly budget according to Nepali calendar month
+              </p>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setEditBudgetOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleUpdateBudget} className="bg-green-600 hover:bg-green-700">
+              Update Budget
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
