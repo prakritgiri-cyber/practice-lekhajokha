@@ -18,71 +18,132 @@ export const mockUser = {
   ]
 };
 
-export const mockExpenses = [
-  {
-    id: '1',
-    category: 'Food',
-    amount: 450,
-    description: 'Lunch at college canteen',
-    date: currentNepaliDate.format('YYYY-MM-DD'),
-    englishDate: new Date().toISOString(),
-    icon: 'Utensils'
-  },
-  {
-    id: '2',
-    category: 'Transport',
-    amount: 120,
-    description: 'Bus fare',
-    date: currentNepaliDate.format('YYYY-MM-DD'),
-    englishDate: new Date().toISOString(),
-    icon: 'Bus'
-  },
-  {
-    id: '3',
-    category: 'Stationery',
-    amount: 280,
-    description: 'Notebooks and pens',
-    date: new NepaliDate(currentYear, currentMonth, currentNepaliDate.getDate() - 1).format('YYYY-MM-DD'),
-    englishDate: new Date(Date.now() - 86400000).toISOString(),
-    icon: 'BookOpen'
-  },
-  {
-    id: '4',
-    category: 'Internet',
-    amount: 600,
-    description: 'Monthly data pack',
-    date: new NepaliDate(currentYear, currentMonth, currentNepaliDate.getDate() - 2).format('YYYY-MM-DD'),
-    englishDate: new Date(Date.now() - 172800000).toISOString(),
-    icon: 'Wifi'
-  },
-  {
-    id: '5',
-    category: 'Food',
-    amount: 350,
-    description: 'Dinner with friends',
-    date: new NepaliDate(currentYear, currentMonth, currentNepaliDate.getDate() - 3).format('YYYY-MM-DD'),
-    englishDate: new Date(Date.now() - 259200000).toISOString(),
-    icon: 'Utensils'
-  },
-  {
-    id: '6',
-    category: 'Education',
-    amount: 1200,
-    description: 'Course materials',
-    date: new NepaliDate(currentYear, currentMonth, currentNepaliDate.getDate() - 5).format('YYYY-MM-DD'),
-    englishDate: new Date(Date.now() - 432000000).toISOString(),
-    icon: 'GraduationCap'
-  },
-  {
-    id: '7',
-    category: 'Entertainment',
-    amount: 500,
-    description: 'Movie tickets',
-    date: new NepaliDate(currentYear, currentMonth, currentNepaliDate.getDate() - 6).format('YYYY-MM-DD'),
-    englishDate: new Date(Date.now() - 518400000).toISOString(),
-    icon: 'Tv'
+// Generate expenses for the current week
+const generateWeeklyExpenses = () => {
+  const expenses = [];
+  const today = new Date();
+  
+  // Add expenses for each day of the current week
+  for (let i = 0; i < 7; i++) {
+    const date = new Date(today);
+    date.setDate(today.getDate() - i);
+    const nepaliDate = new NepaliDate(date);
+    
+    // Vary expenses by day
+    if (i === 0) {
+      // Today
+      expenses.push({
+        id: `exp-${i}-1`,
+        category: 'Food',
+        amount: 450,
+        description: 'Lunch at college canteen',
+        date: nepaliDate.format('YYYY-MM-DD'),
+        englishDate: date.toISOString(),
+        icon: 'Utensils'
+      });
+      expenses.push({
+        id: `exp-${i}-2`,
+        category: 'Transport',
+        amount: 120,
+        description: 'Bus fare',
+        date: nepaliDate.format('YYYY-MM-DD'),
+        englishDate: date.toISOString(),
+        icon: 'Bus'
+      });
+    } else if (i === 1) {
+      expenses.push({
+        id: `exp-${i}-1`,
+        category: 'Stationery',
+        amount: 280,
+        description: 'Notebooks and pens',
+        date: nepaliDate.format('YYYY-MM-DD'),
+        englishDate: date.toISOString(),
+        icon: 'BookOpen'
+      });
+      expenses.push({
+        id: `exp-${i}-2`,
+        category: 'Food',
+        amount: 350,
+        description: 'Snacks',
+        date: nepaliDate.format('YYYY-MM-DD'),
+        englishDate: date.toISOString(),
+        icon: 'Utensils'
+      });
+    } else if (i === 2) {
+      expenses.push({
+        id: `exp-${i}-1`,
+        category: 'Internet',
+        amount: 600,
+        description: 'Monthly data pack',
+        date: nepaliDate.format('YYYY-MM-DD'),
+        englishDate: date.toISOString(),
+        icon: 'Wifi'
+      });
+    } else if (i === 3) {
+      expenses.push({
+        id: `exp-${i}-1`,
+        category: 'Food',
+        amount: 400,
+        description: 'Dinner with friends',
+        date: nepaliDate.format('YYYY-MM-DD'),
+        englishDate: date.toISOString(),
+        icon: 'Utensils'
+      });
+      expenses.push({
+        id: `exp-${i}-2`,
+        category: 'Transport',
+        amount: 80,
+        description: 'Taxi',
+        date: nepaliDate.format('YYYY-MM-DD'),
+        englishDate: date.toISOString(),
+        icon: 'Bus'
+      });
+    } else if (i === 4) {
+      expenses.push({
+        id: `exp-${i}-1`,
+        category: 'Education',
+        amount: 1200,
+        description: 'Course materials',
+        date: nepaliDate.format('YYYY-MM-DD'),
+        englishDate: date.toISOString(),
+        icon: 'GraduationCap'
+      });
+    } else if (i === 5) {
+      expenses.push({
+        id: `exp-${i}-1`,
+        category: 'Groceries',
+        amount: 850,
+        description: 'Weekly groceries',
+        date: nepaliDate.format('YYYY-MM-DD'),
+        englishDate: date.toISOString(),
+        icon: 'ShoppingCart'
+      });
+    } else if (i === 6) {
+      expenses.push({
+        id: `exp-${i}-1`,
+        category: 'Entertainment',
+        amount: 500,
+        description: 'Movie tickets',
+        date: nepaliDate.format('YYYY-MM-DD'),
+        englishDate: date.toISOString(),
+        icon: 'Tv'
+      });
+      expenses.push({
+        id: `exp-${i}-2`,
+        category: 'Food',
+        amount: 300,
+        description: 'Breakfast',
+        date: nepaliDate.format('YYYY-MM-DD'),
+        englishDate: date.toISOString(),
+        icon: 'Utensils'
+      });
+    }
   }
-];
+  
+  return expenses;
+};
+
+export const mockExpenses = generateWeeklyExpenses();
 
 export const defaultCategories = [
   { id: 'food', name: 'Food', icon: 'Utensils', color: '#22c55e' },
