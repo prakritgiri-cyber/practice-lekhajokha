@@ -7,7 +7,7 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Textarea } from '../components/ui/textarea';
 import { Badge } from '../components/ui/badge';
-import { AlertTriangle, TrendingDown, Plus, Trash2, Edit2 } from 'lucide-react';
+import { AlertTriangle, TrendingDown, Plus, Trash2, Edit2, Settings } from 'lucide-react';
 import { defaultCategories, mockExpenses, mockUser, getTodayExpenseTotal, getRemainingBudget, getBudgetPercentage } from '../mock';
 import IconPicker from '../components/IconPicker';
 import { toast } from '../hooks/use-toast';
