@@ -25,6 +25,8 @@ const Dashboard = () => {
   const [customCategory, setCustomCategory] = useState({ name: '', icon: 'MoreHorizontal' });
   const [iconPickerOpen, setIconPickerOpen] = useState(false);
   const [editingExpense, setEditingExpense] = useState(null);
+  const [editBudgetOpen, setEditBudgetOpen] = useState(false);
+  const [newBudget, setNewBudget] = useState('');
 
   const todayTotal = getTodayExpenseTotal();
   const remaining = getRemainingBudget();
