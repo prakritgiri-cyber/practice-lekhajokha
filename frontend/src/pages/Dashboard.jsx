@@ -112,6 +112,31 @@ const Dashboard = () => {
     });
   };
 
+  const handleUpdateBudget = () => {
+    const budget = parseFloat(newBudget);
+    if (!budget || budget <= 0) {
+      toast({
+        title: "Invalid Budget",
+        description: "Please enter a valid budget amount.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setUser({
+      ...user,
+      monthlyBudget: budget
+    });
+
+    setEditBudgetOpen(false);
+    setNewBudget('');
+
+    toast({
+      title: "Budget Updated!",
+      description: `Monthly budget set to ₨${budget.toFixed(2)}`,
+    });
+  };
+
   const groupExpensesByDate = () => {
     const grouped = {};
     expenses.forEach(expense => {
