@@ -28,7 +28,7 @@ ChartJS.register(
 );
 
 const Charts = () => {
-  const [timeRange, setTimeRange] = useState('week'); // 'week' or 'last7days'
+  const [timeRange, setTimeRange] = useState('last7days'); // 'week' or 'last7days'
 
   // Get date ranges
   const getDateRange = () => {
