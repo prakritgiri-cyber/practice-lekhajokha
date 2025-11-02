@@ -56,7 +56,12 @@ const Charts = () => {
   // Filter expenses by date range
   const filteredExpenses = mockExpenses.filter(expense => {
     const expenseDate = new Date(expense.englishDate);
-    return expenseDate >= start && expenseDate <= end;
+    expenseDate.setHours(0, 0, 0, 0);
+    const startDate = new Date(start);
+    startDate.setHours(0, 0, 0, 0);
+    const endDate = new Date(end);
+    endDate.setHours(23, 59, 59, 999);
+    return expenseDate >= startDate && expenseDate <= endDate;
   });
 
   // Prepare weekly bar chart data
