@@ -171,7 +171,21 @@ const Dashboard = () => {
         <Card className="mb-6 border-2 border-green-200 dark:border-green-800 shadow-lg">
           <CardContent className="pt-6">
             <div className="text-center space-y-2">
-              <p className="text-sm text-gray-600 dark:text-gray-400">Monthly Budget</p>
+              <div className="flex items-center justify-center space-x-2">
+                <p className="text-sm text-gray-600 dark:text-gray-400">Monthly Budget</p>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-6 w-6"
+                  onClick={() => {
+                    setNewBudget(user.monthlyBudget.toString());
+                    setEditBudgetOpen(true);
+                  }}
+                  title="Edit Budget"
+                >
+                  <Settings className="w-4 h-4 text-gray-500 hover:text-green-600" />
+                </Button>
+              </div>
               <div className="flex items-center justify-center space-x-2">
                 <h2 className="text-4xl font-bold text-green-600 dark:text-green-400">
                   ₨{remaining.toFixed(2)}
