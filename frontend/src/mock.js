@@ -22,8 +22,10 @@ export const mockUser = {
 const generateWeeklyExpenses = () => {
   const expenses = [];
   const today = new Date();
+  // Set to start of day to avoid time comparison issues
+  today.setHours(0, 0, 0, 0);
   
-  // Add expenses for each day of the current week
+  // Add expenses for each day of the last 7 days
   for (let i = 0; i < 7; i++) {
     const date = new Date(today);
     date.setDate(today.getDate() - i);
@@ -33,7 +35,7 @@ const generateWeeklyExpenses = () => {
     if (i === 0) {
       // Today
       expenses.push({
-        id: `exp-${i}-1`,
+        id: `exp-${Date.now()}-${i}-1`,
         category: 'Food',
         amount: 450,
         description: 'Lunch at college canteen',
@@ -42,7 +44,7 @@ const generateWeeklyExpenses = () => {
         icon: 'Utensils'
       });
       expenses.push({
-        id: `exp-${i}-2`,
+        id: `exp-${Date.now()}-${i}-2`,
         category: 'Transport',
         amount: 120,
         description: 'Bus fare',
@@ -52,7 +54,7 @@ const generateWeeklyExpenses = () => {
       });
     } else if (i === 1) {
       expenses.push({
-        id: `exp-${i}-1`,
+        id: `exp-${Date.now()}-${i}-1`,
         category: 'Stationery',
         amount: 280,
         description: 'Notebooks and pens',
@@ -61,7 +63,7 @@ const generateWeeklyExpenses = () => {
         icon: 'BookOpen'
       });
       expenses.push({
-        id: `exp-${i}-2`,
+        id: `exp-${Date.now()}-${i}-2`,
         category: 'Food',
         amount: 350,
         description: 'Snacks',
@@ -71,7 +73,7 @@ const generateWeeklyExpenses = () => {
       });
     } else if (i === 2) {
       expenses.push({
-        id: `exp-${i}-1`,
+        id: `exp-${Date.now()}-${i}-1`,
         category: 'Internet',
         amount: 600,
         description: 'Monthly data pack',
@@ -81,7 +83,7 @@ const generateWeeklyExpenses = () => {
       });
     } else if (i === 3) {
       expenses.push({
-        id: `exp-${i}-1`,
+        id: `exp-${Date.now()}-${i}-1`,
         category: 'Food',
         amount: 400,
         description: 'Dinner with friends',
@@ -90,7 +92,7 @@ const generateWeeklyExpenses = () => {
         icon: 'Utensils'
       });
       expenses.push({
-        id: `exp-${i}-2`,
+        id: `exp-${Date.now()}-${i}-2`,
         category: 'Transport',
         amount: 80,
         description: 'Taxi',
@@ -100,7 +102,7 @@ const generateWeeklyExpenses = () => {
       });
     } else if (i === 4) {
       expenses.push({
-        id: `exp-${i}-1`,
+        id: `exp-${Date.now()}-${i}-1`,
         category: 'Education',
         amount: 1200,
         description: 'Course materials',
@@ -110,7 +112,7 @@ const generateWeeklyExpenses = () => {
       });
     } else if (i === 5) {
       expenses.push({
-        id: `exp-${i}-1`,
+        id: `exp-${Date.now()}-${i}-1`,
         category: 'Groceries',
         amount: 850,
         description: 'Weekly groceries',
@@ -120,7 +122,7 @@ const generateWeeklyExpenses = () => {
       });
     } else if (i === 6) {
       expenses.push({
-        id: `exp-${i}-1`,
+        id: `exp-${Date.now()}-${i}-1`,
         category: 'Entertainment',
         amount: 500,
         description: 'Movie tickets',
@@ -129,7 +131,7 @@ const generateWeeklyExpenses = () => {
         icon: 'Tv'
       });
       expenses.push({
-        id: `exp-${i}-2`,
+        id: `exp-${Date.now()}-${i}-2`,
         category: 'Food',
         amount: 300,
         description: 'Breakfast',
