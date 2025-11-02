@@ -1,53 +1,54 @@
-import { useEffect } from "react";
-import "@/App.css";
+import React from "react";
+import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
-  return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
+import { ThemeProvider } from "./context/ThemeContext";
+import { Toaster } from "./components/ui/toaster";
+import Header from "./components/Header";
+import Dashboard from "./pages/Dashboard";
+import Charts from "./pages/Charts";
+import Tips from "./pages/Tips";
+import { mockExpenses } from "./mock";
 
 function App() {
+  const handleExportCSV = () => {
+    const headers = ['Date', 'Category', 'Amount', 'Description'];
+    const csvData = mockExpenses.map(exp => [
+      exp.date,
+      exp.category,
+      exp.amount,
+      exp.description || ''
+    ]);
+
+    const csvContent = [
+      headers.join(','),
+      ...csvData.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `lekha-jokha-expenses-${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <ThemeProvider>
+      <div className="App">
+        <BrowserRouter>
+          <Header onExportCSV={handleExportCSV} />
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/charts" element={<Charts />} />
+            <Route path="/tips" element={<Tips />} />
+          </Routes>
+          <Toaster />
+        </BrowserRouter>
+      </div>
+    </ThemeProvider>
   );
 }
 
